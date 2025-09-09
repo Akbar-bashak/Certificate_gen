@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JCPenney - Certificate Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f6f8;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: #d6d6d6;
+      border-bottom: 1px solid #ddd;
+    }
+    .header img {
+      height: 32px;
+      margin-right: 8px;
+    }
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #343a40;
+    }
+    .form-container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      padding: 32px;
+      max-width: 900px;
+      margin: 36px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 32px;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 7px;
+      letter-spacing: 0.2px;
+    }
+    input, select {
+      padding: 9px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border .18s;
+    }
+    input:focus, select:focus {
+      border-color: #007bff;
+    }
+    .button-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .btn-generate {
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 32px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.05rem;
+    }
+    .btn-download {
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 32px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.05rem;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 12px;
+      margin-bottom: 0;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+      padding: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      word-break: break-all;
+      font-size: 13px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #e3e6eb;
+      padding: 8px 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f1f1f1;
+      font-weight: 600;
+    }
+    @media (max-width: 900px) {
+      .form-container {
+        padding: 10px;
+        max-width: unset;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .button-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+    }
+    .note {
+      font-style: italic;
+      color: #555;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span>
+      
+    </span>
+    <span class="title">JCPenney - Certificate Generator</span>
+  </div>
+
+  <div class="form-container">
+    <form onsubmit="return false">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="certType">Cert Type</label>
+          <select id="certType">
+            <option>NND010BCTN</option>
+            <option>NFD010BCTN</option>
+            <option>BND010EBRN</option>
+            <option>BND010EB0N</option>
+            <option>BFD010EB0N</option>
+            <option>BND010EB1N</option>
+            <option>BFD010EB1N</option>
+            <option>BND020EB0N</option>
+            <option>BFD020EB0N</option>
+            <option>BND020EB1N</option>
+            <option>BFD020EB1N</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="certYear">Cert Year</label>
+          <input type="text" id="certYear" value="2025" />
+        </div>
+        <div class="form-group">
+          <label for="certMonth">Cert Month (MM)</label>
+          <input type="text" id="certMonth" value="09" />
+        </div>
+        <div class="form-group">
+          <label for="valueAmount">Value Amount</label>
+          <select id="valueAmount">
+            <option>5</option>
+            <option>10</option>
+            <option>15</option>
+            <option>20</option>
+            <option>25</option>
+            <option>30</option>
+            <option>35</option>
+            <option>40</option>
+            <option>45</option>
+            <option>50</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rewardType">Reward Type</label>
+          <select id="rewardType">
+            <option>JCPRWD</option>
+            <option>BNRWD</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="activeStart">Cert Active Start Date</label>
+          <input type="date" id="activeStart" value="2025-09-09" />
+        </div>
+        <div class="form-group">
+          <label for="activeEnd">Cert Active End Date</label>
+          <input type="date" id="activeEnd" value="2025-10-09" />
+        </div>
+        <div class="form-group">
+          <label for="issueStart">Cert Issue Start Date</label>
+          <input type="date" id="issueStart" value="2025-09-09" />
+        </div>
+        <div class="form-group">
+          <label for="issueEnd">Cert Issue End Date</label>
+          <input type="date" id="issueEnd" value="2025-09-11" />
+        </div>
+        <div class="form-group">
+          <label for="programId">Program ID (6 digits)</label>
+          <input type="text" id="programId" value="445599" maxlength="6" />
+        </div>
+        <div class="form-group">
+          <label for="records">Total Records</label>
+          <input type="number" id="records" value="100" min="1" max="1000" />
+        </div>
+      </div>
+      <div class="button-row">
+        <button class="btn-generate" type="button" onclick="generatePreview()">Generate Preview</button>
+        <button class="btn-download" type="button" onclick="downloadCSV()" disabled id="downloadBtn">Download CSV</button>
+      </div>
+    </form>
+    <div class="table-wrapper">
+      <div id="preview"></div>
+    </div>
+  </div>
+
+  <script>
+    let generatedData = [];
+    function padNumber(num, size) {
+      let s = String(num);
+      while (s.length < size) s = "0" + s;
+      return s;
+    }
+    function formatDate(inputDate) {
+      const d = new Date(inputDate);
+      let month = (d.getMonth() + 1).toString().padStart(2, '0');
+      let day = d.getDate().toString().padStart(2, '0');
+      return d.getFullYear() + month + day;
+    }
+    function padProgramId(programId) {
+      let s = String(programId);
+      while (s.length < 6) s = "0" + s;
+      return s;
+    }
+    function generatePreview() {
+      const certType = document.getElementById("certType").value;
+      const certYear = document.getElementById("certYear").value;
+      const certMonth = document.getElementById("certMonth").value;
+      const activeStart = formatDate(document.getElementById("activeStart").value);
+      const activeEnd = formatDate(document.getElementById("activeEnd").value);
+      const issueStart = formatDate(document.getElementById("issueStart").value);
+      const issueEnd = formatDate(document.getElementById("issueEnd").value);
+      const programIdRaw = document.getElementById("programId").value;
+      const programId = padProgramId(programIdRaw);
+      const totalRecords = parseInt(document.getElementById("records").value);
+      const valueAmount = document.getElementById("valueAmount").value;
+      const rewardType = document.getElementById("rewardType").value;
+      // Fixed and random values
+      const barcodeInitial = "MC";
+      const sponsorCode = padNumber(Math.floor(Math.random() * 90) + 10, 2);
+      const useKill = Math.floor(Math.random() * 9) + 1;
+      const programCheck = Math.floor(Math.random() * 9) + 1;
+      generatedData = [];
+      for (let i = 1; i <= totalRecords; i++) {
+        const serialNumber = padNumber(i, 10);
+        const mobileBarcode = `C%/J${padNumber(i, 2)}P+?RC`;
+        // Place rewardType after the record sequence (padNumber(i, 10))
+        const record = [
+          "D",
+          certType,
+          "00000000000000000000000000000000000000",
+          certYear,
+          certMonth,
+          activeStart,
+          activeEnd,
+          barcodeInitial,
+          programId,
+          sponsorCode,
+          useKill,
+          "000",
+          serialNumber,
+          programCheck,
+          mobileBarcode,
+          "U",
+          padNumber(i, 10),
+          rewardType,      // <-- Insert Reward Type here
+          "D",
+          valueAmount,           // <-- Value Amount after 'D'
+          issueStart,
+          issueEnd
+        ].join("|");
+        generatedData.push(record);
+      }
+      // Preview table for first 10 records, scrollable
+      let previewHTML = "<h3 style='margin-bottom:8px'>Preview (First 10 Records)</h3>";
+      previewHTML += "<table><tr><th style='width:44px; min-width:36px; max-width:60px;'>Row</th><th>Record</th></tr>";
+      generatedData.slice(0, 10).forEach((row, idx) => {
+        previewHTML += `<tr><td>${idx + 1}</td><td>${row}</td></tr>`;
+      });
+      previewHTML += "</table>";
+      previewHTML += `<div class='note'>Showing first 10 of ${totalRecords} records.<br>
+      </div>`;
+      document.getElementById("preview").innerHTML = previewHTML;
+      document.getElementById("downloadBtn").disabled = false;
+    }
+    function downloadCSV() {
+      const certType = document.getElementById("certType").value;
+      let prefix = "PENY_CERT";
+      if (certType.startsWith("N")) {
+        if (certType[1] === "N") prefix += "ON";
+        else if (certType[1] === "F") prefix += "OF";
+      } else if (certType.startsWith("B")) {
+        if (certType[1] === "N" || certType[1] === "F") prefix += "B";
+      }
+      const dateStr = new Date().toISOString().slice(0,10).replace(/-/g,"");
+      const fileName = `${prefix}_${dateStr}.csv`;
+      const blob = new Blob([generatedData.join("\n")], { type: "text/csv" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+  </script>
+<!-- Subtle watermark attribution -->
+  <div style="
+    position: fixed;
+    bottom: 5px;
+    right: 8px;
+    font-size: 8px;
+    color: #ccc;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+  ">
+    Created by Akbar Basha K
+  </div>
+</body>
+</html>
